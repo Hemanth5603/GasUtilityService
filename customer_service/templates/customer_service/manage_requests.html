@@ -1,0 +1,8 @@
+<h2>Manage Service Requests</h2>
+<ul>
+    {% for request in all_requests %}
+        <li>
+            {{ request.customer.user.username }} - {{ request.request_type }} - {{ request.status }}
+        </li>
+    {% endfor %}
+</ul>

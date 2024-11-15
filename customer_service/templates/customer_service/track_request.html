@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Utility Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .request-item {
+            text-align: left;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .request-item:last-child {
+            border-bottom: none;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gas Utility Service</h1>
+        <h2>Your Service Requests</h2>
+        <ul>
+            {% for request in requests %}
+                <li class="request-item">
+                    <p><strong>Request Type:</strong> {{ request.request_type }}</p>
+                    <p><strong>Status:</strong> {{ request.status }}</p>
+                    <p><strong>Submitted on:</strong> {{ request.created_at|date:"F j, Y, g:i a" }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="button-container">
+            <a href="{% url 'submit_request' %}" class="button">Submit New Request</a>
+        </div>
+    </div>
+</body>
+</html>
