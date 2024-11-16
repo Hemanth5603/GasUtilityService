@@ -29,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_URL = '/service/login/'
+LOGIN_REDIRECT_URL = '/service/track/'
 # Application definition
 
 INSTALLED_APPS = [
