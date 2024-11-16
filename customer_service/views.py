@@ -13,21 +13,19 @@ def submit_request(request):
         form = ServiceRequestForm(request.POST, request.FILES)
         if form.is_valid():
             service_request = form.save(commit=False)
-            # Ensure the customer profile exists for the current user
+         
             if hasattr(request.user, 'customerprofile'):
                 service_request.customer = request.user.customerprofile
                 service_request.save()
                 return redirect('track_requests')  # Redirect after successful submission
             else:
-                # Return an error page if customer profile doesn't exist
                 return render(request, 'customer_service/error.html', {
-                    'message': 'Customer profile does not exist. Please contact support.'
+                    'message': 'Customer profile does not exist'
                 })
     else:
         form = ServiceRequestForm()
-    
-    # Render the form for GET requests
     return render(request, 'customer_service/submit_request.html', {'form': form})
+
 
 @login_required
 def track_requests(request):
@@ -73,11 +71,11 @@ def register(request):
             user.set_password(form.cleaned_data['password'])  # Hash the password
             user.save()
 
-            # Only create a CustomerProfile if it doesn't already exist
+           
             CustomerProfile.objects.get_or_create(user=user)
             
-            login(request, user)  # Log the user in after registration
-            return redirect('track_request')  # Redirect to tracking page
+            login(request, user) 
+            return redirect('track_requests') 
     else:
         form = UserRegistrationForm()
     
