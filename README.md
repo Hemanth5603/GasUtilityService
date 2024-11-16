@@ -21,7 +21,7 @@ The Gas Utility Service application aims to streamline the management of custome
 
 ### **Prerequisites**
 - Python 3.8+
-- Pip (Python package manager)
+- Pip
 - Git
 
 ### **Step-by-Step Setup**
